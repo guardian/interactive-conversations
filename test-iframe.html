@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="build/main.css">
+        <script src="src/lib/curl.js"></script>
+        <title></title>
+    </head>
+    <body>
+        <div class="interactive"><a href="test-fast.html">asdf</a></div>
+        <script type="text/javascript">
+          var el = document.querySelector('.interactive');
+          console.log(el);
+          require = curl;
+          curl(['http://interactive.guim.co.uk/embed/iframe-wrapper/0.1/boot.js'], function(app) {
+                console.log(app);
+                app.boot(el);
+          });
+        </script>
+    </body>
+</html>

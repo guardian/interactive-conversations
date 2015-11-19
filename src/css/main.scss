@@ -1,0 +1,131 @@
+@import 'font';
+@import 'mq';
+@import 'share';
+
+
+.cnv-container {
+    background: #f7f7f7;
+}
+
+.cnv-content {
+    max-width: 980px;
+    background: white;
+    margin: auto;
+}
+
+.cnv-head {
+    background: #474f52;
+    color: #6d7275;
+    padding: 12px 80px;
+    padding-bottom: 24px;
+    > h3:first-child {
+        @include fs-headline(4);
+        font-weight: 100;
+        margin: 24px 0;
+        color: #8B8F92;
+    }
+
+    > h2 {
+        color: white;
+        margin-bottom: 6px;
+    }
+}
+
+
+.cnv-head > h2,
+.cnv-head__conversation > h2 {
+    @include fs-bodyHeading(4);
+    font-weight: 900;
+    font-size: 56px;
+    line-height: 72px;
+    margin: 0;
+}
+
+.cnv-head__conversation {
+    position: relative;
+}
+
+.cnv-head__conversation__author {
+    @include fs-headline(3);
+    font-size: 22px;
+    font-weight: 100;
+}
+
+.cnv-head__conversation__downarrow {
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    top: 18px;
+    right: 0;
+    background: #49a7cb;
+    border-radius: 1000px;
+    display: none;
+    svg {
+        width: 20px;
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+        position: absolute;
+        left: 0; right: 0; top: 0; bottom: 0;
+        margin: auto;
+    }
+}
+
+.cnv-head__conversation {
+    cursor: pointer;
+    margin-bottom: 12px;
+    display: block;
+    text-decoration: none;
+    color: #6d7275;
+    &:hover {
+        color: #49a7cb;
+        .cnv-head__conversation__downarrow {
+            display: block;
+        }
+    }
+}
+
+.cnv-conversation {
+    padding: 12px 80px;
+    position: relative;
+    > h2 {
+        @include f-bodyCopy;
+        font-size: 30px;
+        line-height: 36px;
+        font-weight: 900;
+        margin: 12px 0;
+        > span {
+            display: block;
+        }
+    }
+}
+
+.cnv-conversation__body {
+    @include fs-bodyCopy(2);
+    color: #444;
+    max-width: 620px;
+}
+
+.cnv-conversation__top {
+    float: right;
+    width: 48px;
+    height: 48px;
+    border-radius: 1000px;
+    display: block;
+    border: 1px solid #bdbdbd;
+    position: relative;
+    cursor: pointer;
+    margin-top: 12px;
+    svg {
+        width: 24px;
+        fill: #bdbdbd;
+        position: absolute;
+        left: 0; right: 0; top: 0; bottom: 4px;
+        margin: auto;
+    }
+    &:hover {
+        border: 1px solid #767676;
+        svg {
+            fill: #767676;
+        }
+    }
+}
