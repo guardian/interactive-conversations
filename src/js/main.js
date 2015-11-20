@@ -41,7 +41,9 @@ function load(el, data) {
         menuDown: el.querySelector('.cnv-fixed-menu__arrow--down'),
         menuUp: el.querySelector('.cnv-fixed-menu__arrow--up'),
         menuTitle: el.querySelector('.cnv-fixed-menu__title'),
-        convos: [].slice.call(el.querySelectorAll('.cnv-conversation')).reverse()
+        convos: [].slice.call(el.querySelectorAll('.cnv-conversation')).reverse(),
+        headConvos: [].slice.call(el.querySelectorAll('.cnv-head__conversation')),
+        headBackgrounds: [].slice.call(el.querySelectorAll('.cnv-head-background')),
     }
     let menuVisible = false;
     let showMenu = () => els.menu.setAttribute('data-show', '');
@@ -91,6 +93,17 @@ function load(el, data) {
         articleNav(convoIndex);
         evt.preventDefault(); evt.stopPropagation();
     })
+
+    let hideAllBackgrounds = () => els.headBackgrounds.forEach(convoEl => convoEl.className = 'cnv-head-background');
+
+    els.headConvos.forEach((thisConvoEl, i) => {
+        bean.on(thisConvoEl, 'mouseenter', evt => {
+            hideAllBackgrounds();
+            els.headBackgrounds[i].className = 'cnv-head-background cnv-head-background--show';
+        })
+        bean.on(thisConvoEl, 'mouseleave', hideAllBackgrounds);
+    })
+
 
     window.setTimeout(() => els.head.className = 'cnv-head cnv-head--animate', 50);
 }
