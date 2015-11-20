@@ -202,17 +202,20 @@ figure.element-interactive {
         width: 36px;
         height: 36px;
     }
+
     svg {
         width: 55%;
         position: absolute;
         left: 0; right: 0; top: 0; bottom: 0;
         margin: auto;
-        fill: #6D7275;
+        fill: #ccc;
+        opacity: 0.35;
     }
     .cnv-head__conversation:hover & {
         background: #49a7cb;
         svg {
             fill: white;
+            opacity: 1.0;
         }
     }
 }
