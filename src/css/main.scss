@@ -2,6 +2,9 @@
 @import 'mq';
 @import 'share';
 
+figure.element-interactive {
+    margin: 0 !important;
+}
 
 .cnv-container {
     background: #f7f7f7;
@@ -128,4 +131,9 @@
             fill: #767676;
         }
     }
+}
+
+.cnv-conversation__block-pic {
+    width: 100%;
+    max-width: 620px;
 }

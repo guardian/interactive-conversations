@@ -24,6 +24,7 @@
     "postinstall": "",
     "dev": "node_modules/.bin/grunt",
     "dev:inline": "node_modules/.bin/grunt dev:inline",
+    "deploy:inline": "node_modules/.bin/grunt deploy:inline",
     "deploy": "node_modules/.bin/grunt deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -1,8 +1,29 @@
 var fs = require('fs')
+var ini = require('ini')
+var path = require('path')
+
+function getAWSCredentials(grunt, cfg) {
+    var awsCredentialsFilePath = cfg.credentialsFile.replace('$HOME', process.env['HOME']);
+    if (!fs.existsSync(awsCredentialsFilePath)) {
+        grunt.log.warn('Credentials file missing: ' + awsCredentialsFilePath);
+        return
+    }
+    var iniFile = ini.parse(fs.readFileSync(awsCredentialsFilePath, 'utf-8'));
+    if (iniFile[cfg.profile]) {
+        grunt.log.ok('Using AWS credentials ' + cfg.profile + ' profile');
+        return iniFile[cfg.profile];
+    }
+
+    grunt.log.warn('AWS Credentials profile ' + cfg.profile + ' does not exist. Using default credentials.')
+    return iniFile.default;
+}
 
 module.exports = function(grunt) {
 
     require('jit-grunt')(grunt);
+
+    var s3 = require('./s3cfg.json');
+    var awsCredentials = getAWSCredentials(grunt, s3);
 
     grunt.initConfig({
 
@@ -12,7 +33,7 @@ module.exports = function(grunt) {
                 tasks: ['sass'],
             },
             inlinejs: {
-                files: ['src/js/**/*', 'src/templates/**/*'],
+                files: ['src/js/**/*', 'src/templates/**/*', '!src/js/boot.js'],
                 tasks: ['shell:inlinejs'],
             },
             bootjs: {
@@ -38,14 +59,13 @@ module.exports = function(grunt) {
 
         'template': {
             'bootjsdev': {
-                'data': { 'assetPath': '' },
+                'options': { 'data': { 'assetPath': '' } },
                 'files': { 'build/boot.js': ['src/js/boot.js'] }
             },
             'bootjsprod': {
-                'data': { 'assetPath': grunt.file.readJSON('./s3cfg.json').path },
+                'options': { 'data': { 'assetPath': s3.domain + s3.path } },
                 'files': { 'build/boot.js': ['src/js/boot.js'] }
             }
-
         },
 
 
@@ -61,20 +81,31 @@ module.exports = function(grunt) {
             }
         },
 
-        aws: grunt.file.readJSON('./aws-keys.json'),
-
         aws_s3: {
             options: {
-                accessKeyId: '<%= aws.AWSAccessKeyId %>',
-                secretAccessKey: '<%= aws.AWSSecretKey %>',
+                accessKeyId: awsCredentials.aws_access_key_id,
+                secretAccessKey: awsCredentials.aws_secret_access_key,
                 region: 'us-east-1',
                 uploadConcurrency: 10, // 5 simultaneous uploads
                 downloadConcurrency: 10, // 5 simultaneous downloads
                 debug: grunt.option('dry'),
-                bucket: 'gdn-cdn',
+                bucket: s3.bucket,
                 differential: true
             },
-            production: {
+            inline: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: '.',
+                        src: [
+                            'build/boot.js', 'build/inlined.js', 'build/inlined.js.map', 'build/main.css', 'build/main.css.map'
+                        ],
+                        dest: s3.path,
+                        params: { CacheControl: 'max-age=60' }
+                    }
+                ]
+            },
+            iframe: {
                 files: [
                     {
                         expand: true,
@@ -85,7 +116,7 @@ module.exports = function(grunt) {
                             // data
                             'data/out/indonesia.topojson',
                         ],
-                        dest: 'embed/indonesia/',
+                        dest: s3.path,
                         params: { CacheControl: 'max-age=60' }
                     }
                 ]
@@ -116,7 +147,13 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('deploy', ['clean', 'sass', 'shell:iframedjs', 'aws_s3:production']);
+    grunt.registerTask('logBootURL', function() {
+        grunt.log.ok('BOOTURL: ' + s3.domain + s3.path + '/build/boot.js');
+    })
+
+    // grunt.registerTask('deploy:iframe', ['clean', 'sass', 'shell:iframedjs', 'aws_s3:iframe']);
+    grunt.registerTask('deploy:inline', ['clean', 'sass', 'shell:inlinejs', 'template:bootjsprod', 'aws_s3:inline', 'logBootURL']);
+
     grunt.registerTask('default', ['clean', 'sass', 'connect', 'watch:css']);
     grunt.registerTask('dev:inline', ['clean', 'sass', 'shell:inlinejs', 'template:bootjsdev', 'connect', 'watch']);
 }

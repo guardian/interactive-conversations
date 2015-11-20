@@ -23,14 +23,14 @@ function load(el, data) {
     data.conversations = data.conversations.map(processConversation);
     el.innerHTML = renderMainTemplate(data);
 
-    // bean.on(el, 'click', '.interactive-share', evt => {
-    //     let network = evt.currentTarget.getAttribute('data-network');
-    //     let i = evt.currentTarget.getAttribute('data-index');
-    //     let shareText = data.conversations[i].shareText || data.shareText;
-    //     let shareUrl = data.conversations[i].shareUrl || data.shareUrl;
-    //     let hashTag = data.conversations[i].hashtag || data.hashtag;
-    //     share(shareText, shareUrl, hashTag)(network);
-    // })
+    bean.on(el, 'click', '.interactive-share', evt => {
+        let network = evt.currentTarget.getAttribute('data-network');
+        let i = evt.currentTarget.getAttribute('data-index');
+        let shareText = data.conversations[i].shareText || data.shareText;
+        let shareUrl = data.conversations[i].shareUrl || data.shareUrl;
+        let hashTag = data.conversations[i].hashtag || data.hashtag;
+        share(shareText, shareUrl, hashTag)(network);
+    })
 }
 
 export function init(el, context, config) {

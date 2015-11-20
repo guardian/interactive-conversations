@@ -1,5 +1,7 @@
 {
+	"credentialsFile": "$HOME/.aws/credentials",
+	"profile": "visuals",
 	"bucket": "gdn-cdn",
-	"path": "2015/05/example",
-	"domain": "http://visuals.guim.co.uk/"
+	"path": "2015/11/conversations",
+	"domain": "https://interactive.guim.co.uk/"
 }
