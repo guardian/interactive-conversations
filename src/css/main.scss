@@ -19,12 +19,29 @@ figure.element-interactive {
 .cnv-head {
     background: #474f52;
     color: #6d7275;
-    padding: 12px 80px;
     padding-bottom: 24px;
+    padding: 12px 10px;
+    @include mq(mobileLandscape) {
+        padding: 12px 20px;
+    }
+    @include mq(tablet) {
+        padding: 12px 60px;
+    }
+    @include mq(desktop) {
+        padding: 12px 80px;
+    }
     > h3:first-child {
-        @include fs-headline(4);
+        margin: 12px 0;
+        @include fs-headline(2);
+        @include mq(mobileLandscape) {
+            margin: 24px 0;
+            @include fs-headline(3);
+        }
+        @include mq(desktop) {
+            margin: 24px 0;
+            @include fs-headline(4);
+        }
         font-weight: 100;
-        margin: 24px 0;
         color: #8B8F92;
     }
 
@@ -39,8 +56,20 @@ figure.element-interactive {
 .cnv-head__conversation > h2 {
     @include fs-bodyHeading(4);
     font-weight: 900;
-    font-size: 56px;
-    line-height: 72px;
+    font-size: 20px;
+    line-height: 24px;
+    @include mq(mobileLandscape) {
+        font-size: 32px;
+        line-height: 36px;
+    }
+    @include mq(tablet) {
+        font-size: 42px;
+        line-height: 48px;
+    }
+    @include mq(desktop) {
+        font-size: 56px;
+        line-height: 72px;
+    }
     margin: 0;
 }
 
@@ -49,8 +78,13 @@ figure.element-interactive {
 }
 
 .cnv-head__conversation__author {
-    @include fs-headline(3);
-    font-size: 22px;
+    @include fs-headline(1);
+    @include mq(mobileLandscape) {
+        @include fs-headline(2, true);
+    }
+    @include mq(desktop) {
+        @include fs-headline(3, true);
+    }
     font-weight: 100;
 }
 
@@ -96,7 +130,16 @@ figure.element-interactive {
 }
 
 .cnv-conversation {
-    padding: 12px 80px;
+    padding: 12px 10px;
+    @include mq(mobileLandscape) {
+        padding: 12px 20px;
+    }
+    @include mq(tablet) {
+        padding: 12px 60px;
+    }
+    @include mq(desktop) {
+        padding: 12px 80px;
+    }
     position: relative;
     > h2 {
         @include f-bodyCopy;
@@ -162,7 +205,10 @@ figure.element-interactive {
 .cnv-fixed-menu__content {
     max-width: 980px;
     margin: auto;
-    padding-left: 80px;
+    padding-left: 10px;
+    @include mq(mobileLandscape) { padding-left: 20px; }
+    @include mq(tablet) { padding-left: 60px; }
+    @include mq(desktop) { padding-left: 80px; }
     box-sizing: border-box;
     position: relative;
     background: #474f52;
