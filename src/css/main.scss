@@ -173,6 +173,7 @@ figure.element-interactive {
 }
 
 .cnv-head__conversation__author {
+    text-decoration: none;
     @include fs-headline(1);
     @include mq(mobileLandscape) {
         font-size: 18px;
@@ -208,7 +209,7 @@ figure.element-interactive {
         position: absolute;
         left: 0; right: 0; top: 0; bottom: 0;
         margin: auto;
-        fill: #ccc;
+        fill: #bdbdbd;
         opacity: 0.35;
     }
     .cnv-head__conversation:hover & {
@@ -443,6 +444,7 @@ figure.element-interactive {
 
 .cnv-head__conversation {
     opacity: 0;
+    text-decoration: none;
 }
 .cnv-head--animate .cnv-head__conversation {
     opacity: 1;
