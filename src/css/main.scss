@@ -215,13 +215,28 @@ figure.element-interactive {
     }
     position: relative;
     > h2 {
-        @include f-bodyCopy;
-        font-size: 30px;
-        line-height: 36px;
+
+        color: #474f52;
         font-weight: 900;
         margin: 12px 0;
+        font-size: 26px;
+        line-height: 32px;
+        @include mq(mobileLandscape) {
+            font-size: 32px;
+            line-height: 36px;
+        }
+        @include mq(tablet) {
+            font-size: 36px;
+            line-height: 42px;
+            padding-right: 130px;
+            margin-bottom: 36px;
+        }
+        @include mq(desktop) {
+            font-size: 42px;
+            line-height: 48px;
+        }
         > span {
-            display: block;
+            color: #95a0a4;
         }
     }
 }
@@ -231,17 +246,38 @@ figure.element-interactive {
     color: #444;
     max-width: 620px;
 }
-
-.cnv-conversation__top {
-    float: right;
-    width: 48px;
+.cnv-conversation__controls {
     height: 48px;
+    margin-bottom: 12px;
+    position: relative;
+    @include mq(tablet) {
+        position: absolute;
+        right: 20px;
+        top: 24px;
+        margin-bottom: 0;
+        height: auto;
+    }
+    @include mq(desktop) {
+        right: 20px;
+    }
+}
+.cnv-conversation__top {
+    @include mq($until: tablet) {
+        position: absolute;
+        top: 0; bottom: 0;
+        margin: auto;
+        right: 0;
+    }
+    width: 44px;
+    height: 44px;
     border-radius: 1000px;
     display: block;
     border: 1px solid #bdbdbd;
-    position: relative;
     cursor: pointer;
-    margin-top: 12px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    margin-left: 10px;
     svg {
         width: 24px;
         fill: #bdbdbd;
@@ -259,7 +295,17 @@ figure.element-interactive {
 
 .cnv-conversation__block-pic {
     width: 100%;
-    max-width: 620px;
+}
+
+.cnv-conversation__share-btns {
+    @include mq($until: tablet) {
+        height: 32px;
+        position: absolute;
+        top: 0; bottom: 0;
+        margin: auto;
+    }
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .cnv-fixed-menu {

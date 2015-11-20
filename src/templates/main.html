@@ -48,14 +48,16 @@
         <div class="cnv-conversations-container">
             {{~it.conversations :conversation:i}}
             <div id="{{=conversation.id}}" class="cnv-conversation" data-convo-index="{{=i}}">
-                <a class="cnv-conversation__top" href='#cnv-top'>
-                    <svg width="24" height="18" viewBox="0 0 24 18"><path d="M.4 15.3l10.5-8.4 1.1-.9 1.1.9 10.5 8.4-.5.7-11.1-6.3-11.1 6.3-.5-.7z"/></svg>
-                </a>
-                <h2>The conversation<span>{{=conversation.title}}</span></h2>
-                <div class="cnv-share-btns">
-                    <button class="interactive-share" data-index="{{=i}}" data-network="facebook"></button>
-                    <button class="interactive-share" data-index="{{=i}}" data-network="twitter"></button>
-                    <button class="interactive-share" data-index="{{=i}}" data-network="email"></button>
+                <h2>The conversation <span>{{=conversation.title}}</span></h2>
+                <div class="cnv-conversation__controls">
+                    <div class="cnv-share-btns cnv-conversation__share-btns">
+                        <button class="interactive-share" data-index="{{=i}}" data-network="facebook"></button>
+                        <button class="interactive-share" data-index="{{=i}}" data-network="twitter"></button>
+                        <button class="interactive-share" data-index="{{=i}}" data-network="email"></button>
+                    </div>
+                    <a class="cnv-conversation__top" href='#cnv-top'>
+                        <svg width="24" height="18" viewBox="0 0 24 18"><path d="M.4 15.3l10.5-8.4 1.1-.9 1.1.9 10.5 8.4-.5.7-11.1-6.3-11.1 6.3-.5-.7z"/></svg>
+                    </a>
                 </div>
 
                 {{?conversation.img}}<img class="cnv-conversation__block-pic" src="{{=conversation.img}}">{{?}}
