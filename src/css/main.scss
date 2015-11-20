@@ -177,17 +177,19 @@ figure.element-interactive {
     color: #49a7cb;
 }
 
-.cnv-fixed-menu__downarrow,
-.cnv-fixed-menu__uparrow {
+.cnv-fixed-menu__arrow {
     position: absolute;
     top: 0; bottom: 0;
     margin: auto;
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
     border-radius: 1000px;
     display: block;
     border: 1px solid #dfdfdf;
     cursor: pointer;
+    background-color: transparent;
+    outline: none;
+    padding: 0;
     svg {
         width: 20px;
         fill: #dfdfdf;
@@ -201,13 +203,17 @@ figure.element-interactive {
             fill: #ffffff;
         }
     }
+    &:disabled {
+        opacity: 0.3;
+        cursor: default;
+    }
 }
 
-.cnv-fixed-menu__downarrow {
+.cnv-fixed-menu__arrow--down {
     right: 20px;
 
 }
-.cnv-fixed-menu__uparrow {
+.cnv-fixed-menu__arrow--up {
     right: 60px;
 }
 

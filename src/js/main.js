@@ -7,6 +7,7 @@ import debounce from './lib/debounce'
 import throttle from './lib/throttle'
 import {fetchJSON} from './lib/fetch'
 import share from './lib/share'
+import {scrollTop} from './lib/scroll'
 
 var renderMainTemplate = doT.template(mainTemplate);
 
@@ -37,6 +38,8 @@ function load(el, data) {
         top: el.querySelector('#cnv-top'),
         head: el.querySelector('.cnv-head'),
         menu: el.querySelector('.cnv-fixed-menu'),
+        menuDown: el.querySelector('.cnv-fixed-menu__arrow--down'),
+        menuUp: el.querySelector('.cnv-fixed-menu__arrow--up'),
         menuTitle: el.querySelector('.cnv-fixed-menu__title'),
         convos: [].slice.call(el.querySelectorAll('.cnv-conversation')).reverse()
     }
@@ -44,22 +47,45 @@ function load(el, data) {
     let showMenu = () => els.menu.setAttribute('data-show', '');
     let hideMenu = () => els.menu.removeAttribute('data-show');
 
+    let lastIndex;
     function setMenuTitle() {
         for (var i = 0; i < els.convos.length; i++) {
             let {top} = els.convos[i].getBoundingClientRect();
-            if (top < 0) return els.menuTitle.textContent = els.convos[i].getAttribute('data-title');
+            if (top < 150) {
+                let index = Number(els.convos[i].getAttribute('data-convo-index'));
+                if (index !== lastIndex) {
+                    if (index === 0) els.menuUp.setAttribute('disabled', '');
+                    else els.menuUp.removeAttribute('disabled');
+
+                    if (index === data.conversations.length - 1) els.menuDown.setAttribute('disabled', '')
+                    else els.menuDown.removeAttribute('disabled')
+
+                    els.menuTitle.textContent = data.conversations[index].title;
+                    lastIndex = index;
+                }
+                break;
+            }
         }
     }
     let throttledSetMenuTitle = throttle(setMenuTitle, 150, {leading: false, trailing: true});
 
     window.addEventListener('scroll', evt => {
-        let menuShouldBeVisible = els.top.getBoundingClientRect().bottom < 0;
+        let menuShouldBeVisible = els.top.getBoundingClientRect().bottom <= 48;
         if (menuShouldBeVisible) {
             throttledSetMenuTitle()
             if (!menuVisible) showMenu();
         } else if (menuVisible) hideMenu();
         menuVisible = menuShouldBeVisible;
     })
+
+    function articleNav(delta) {
+        let {top} = document.querySelector(`#cnv-${lastIndex+delta}`).getBoundingClientRect();
+        scrollTop(scrollTop() + top - 48);
+        setMenuTitle();
+    }
+
+    bean.on(els.menuDown, 'click', evt => articleNav(1))
+    bean.on(els.menuUp, 'click', evt => articleNav(-1))
 
     window.setTimeout(() => els.head.className = 'cnv-head cnv-head--animate', 50);
 }

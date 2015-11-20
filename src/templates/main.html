@@ -5,12 +5,12 @@
             <div class="cnv-fixed-menu__content">
                 <h2>The conversation <span class="cnv-fixed-menu__title"></span></h2>
 
-                <div class="cnv-fixed-menu__downarrow">
+                <button class="cnv-fixed-menu__arrow cnv-fixed-menu__arrow--down">
                     <svg class="cnv-downarrow" width="23" height="23" viewBox="0 0 23 23"><path d="M23 11.5L12.704 21.6l-.96-.96L19.8 12H0v-2h19.8L11.745.96l.96-.96L23 10.5v1" class="icon"></path><path d="M11 32.313C-.75 32.313-10.31 22.753-10.31 11c0-11.75 9.56-21.312 21.313-21.312 11.752 0 21.313 9.56 21.313 21.312S22.753 32.313 11 32.313M11-11c-12.15 0-22 9.85-22 22s9.85 22 22 22 22-9.85 22-22-9.85-22-22-22" fill="none"></path></svg>
-                </div>
-                <div class="cnv-fixed-menu__uparrow">
+                </button>
+                <button class="cnv-fixed-menu__arrow cnv-fixed-menu__arrow--up">
                     <svg class="cnv-uparrow" width="23" height="23" viewBox="0 0 23 23"><path d="M23 11.5L12.704 21.6l-.96-.96L19.8 12H0v-2h19.8L11.745.96l.96-.96L23 10.5v1" class="icon"></path><path d="M11 32.313C-.75 32.313-10.31 22.753-10.31 11c0-11.75 9.56-21.312 21.313-21.312 11.752 0 21.313 9.56 21.313 21.312S22.753 32.313 11 32.313M11-11c-12.15 0-22 9.85-22 22s9.85 22 22 22 22-9.85 22-22-9.85-22-22-22" fill="none"></path></svg>
-                </div>
+                </button>
             </div>
 
         </div>
@@ -30,7 +30,7 @@
         </div>
 
         {{~it.conversations :conversation:i}}
-        <div id="{{=conversation.id}}" class="cnv-conversation" data-title="{{=conversation.title}}">
+        <div id="{{=conversation.id}}" class="cnv-conversation" data-convo-index="{{=i}}">
             <a class="cnv-conversation__top" href='#cnv-top'>
                 <svg width="24" height="18" viewBox="0 0 24 18"><path d="M.4 15.3l10.5-8.4 1.1-.9 1.1.9 10.5 8.4-.5.7-11.1-6.3-11.1 6.3-.5-.7z"/></svg>
             </a>
