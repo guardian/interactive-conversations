@@ -33,6 +33,18 @@
             </div>
         </div>
 
+        <div class="cnv-meta-container">
+            <div class="cnv-meta">
+                <div class="cnv-meta__standfirst">{{=it.standfirst}}</div>
+                <div class="cnv-meta__date">{{=it.publicationDate}}</div>
+                <div class="cnv-meta__share-btns cnv-share-btns">
+                    <button class="interactive-share" data-network="facebook"></button>
+                    <button class="interactive-share" data-network="twitter"></button>
+                    <button class="interactive-share" data-network="email"></button>
+                </div>
+            </div>
+        </div>
+
         <div class="cnv-conversations-container">
             {{~it.conversations :conversation:i}}
             <div id="{{=conversation.id}}" class="cnv-conversation" data-convo-index="{{=i}}">

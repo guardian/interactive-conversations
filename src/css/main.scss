@@ -25,6 +25,47 @@ figure.element-interactive {
     background: #474f52;
 }
 
+.cnv-meta-container {
+    background: #333d3f;
+}
+.cnv-meta {
+    max-width: $max-content-width;
+    margin: auto;
+    box-sizing: border-box;
+    padding: 12px 10px;
+    @include mq(mobileLandscape) {
+        padding: 24px 20px;
+    }
+    @include mq(tablet) {
+        padding: 24px 60px;
+    }
+    @include mq(desktop) {
+        padding: 36px 80px;
+    }
+}
+.cnv-meta__standfirst {
+    max-width: 820px;
+    @include fs-bodyHeading(2);
+    @include mq(mobileLandscape) {
+        @include fs-bodyHeading(3, true);
+    }
+    @include mq(tablet) {
+        @include fs-bodyHeading(4, true);
+    }
+    @include mq(desktop) {
+        font-size: 22px;
+        line-height: 30px;
+    }
+    color: #dadada;
+}
+
+.cnv-meta__date {
+    @include fs-textSans(1);
+    color: #767676;
+    line-height: 24px;
+    margin-bottom: 12px;
+}
+
 .cnv-head {
     color: #6d7275;
     padding-bottom: 24px;
