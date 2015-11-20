@@ -46,7 +46,6 @@ function load(el, data) {
     function setMenuTitle() {
         for (var i = 0; i < els.convos.length; i++) {
             let {top} = els.convos[i].getBoundingClientRect();
-            console.log(top, top < 0);
             if (top < 0) return els.menuTitle.textContent = els.convos[i].getAttribute('data-title');
         }
     }
