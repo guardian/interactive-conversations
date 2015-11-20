@@ -8,6 +8,7 @@ import throttle from './lib/throttle'
 import {fetchJSON} from './lib/fetch'
 import share from './lib/share'
 import {scrollTop} from './lib/scroll'
+import bowser from 'ded/bowser'
 
 var renderMainTemplate = doT.template(mainTemplate);
 
@@ -22,7 +23,10 @@ function processConversation(conversation, i) {
 }
 
 function load(el, data) {
+    let hoverBackgrounds = !bowser.mobile && !bowser.tablet;
+
     data.conversations = data.conversations.map(processConversation);
+    data.hoverBackgrounds = hoverBackgrounds;
     el.innerHTML = renderMainTemplate(data);
 
     bean.on(el, 'click', '.interactive-share', evt => {
@@ -96,14 +100,15 @@ function load(el, data) {
 
     let hideAllBackgrounds = () => els.headBackgrounds.forEach(convoEl => convoEl.className = 'cnv-head-background');
 
-    els.headConvos.forEach((thisConvoEl, i) => {
-        bean.on(thisConvoEl, 'mouseenter', evt => {
-            hideAllBackgrounds();
-            els.headBackgrounds[i].className = 'cnv-head-background cnv-head-background--show';
+    if (hoverBackgrounds) {
+        els.headConvos.forEach((thisConvoEl, i) => {
+            bean.on(thisConvoEl, 'mouseenter', evt => {
+                hideAllBackgrounds();
+                els.headBackgrounds[i].className = 'cnv-head-background cnv-head-background--show';
+            })
+            bean.on(thisConvoEl, 'mouseleave', hideAllBackgrounds);
         })
-        bean.on(thisConvoEl, 'mouseleave', hideAllBackgrounds);
-    })
-
+    }
 
     window.setTimeout(() => els.head.className = 'cnv-head cnv-head--animate', 50);
 }
