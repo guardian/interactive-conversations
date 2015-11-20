@@ -113,8 +113,8 @@ figure.element-interactive {
 .cnv-head__conversation > h2 {
     @include fs-bodyHeading(4);
     font-weight: 900;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 22px;
+    line-height: 26px;
     @include mq(mobileLandscape) {
         font-size: 32px;
         line-height: 36px;
@@ -151,7 +151,9 @@ figure.element-interactive {
 }
 
 .cnv-head__conversation__downarrow {
-    margin-left: 10px;
+    @include mq(mobileLandscape) {
+        margin-left: 10px;
+    }
     border-radius: 1000px;
     display: inline-block;
     position: relative;
@@ -324,31 +326,36 @@ figure.element-interactive {
 .cnv-fixed-menu__content {
     max-width: $max-content-width;
     margin: auto;
-    padding-left: 10px;
     @include mq(mobileLandscape) { padding-left: 20px; }
     @include mq(tablet) { padding-left: 60px; }
     @include mq(desktop) { padding-left: 80px; }
     box-sizing: border-box;
     position: relative;
     background: #474f52;
+    padding: 6px 10px;
     > h2 {
-        @include fs-bodyHeading(4);
         margin: 0;
-        line-height: 48px;
         color: #6e7275;
+        @include f-bodyHeading;
+        font-size: 20px;
+        line-height: 28px;
+        @include mq(tablet) {
+            font-size: 24px;
+            line-height: 28px;
+        }
     }
 }
 
 .cnv-fixed-menu__title {
+    @include mq($until: tablet) {
+        display: block;
+    }
     color: #dfdfdf;
 }
 
 .cnv-fixed-menu__arrow {
     position: absolute;
-    top: 0; bottom: 0;
-    margin: auto;
-    width: 34px;
-    height: 34px;
+    top: 6px;
     border-radius: 1000px;
     display: block;
     border: 1px solid #dfdfdf;
@@ -356,8 +363,16 @@ figure.element-interactive {
     background-color: transparent;
     outline: none;
     padding: 0;
+    width: 28px;
+    height: 28px;
+    @include mq(mobileLandscape) {
+        width: 34px;
+        height: 34px;
+        top: 0; bottom: 0;
+        margin: auto;
+    }
     svg {
-        width: 20px;
+        width: 54%;
         fill: #dfdfdf;
         position: absolute;
         left: 0; right: 0; top: 0; bottom: 0;
@@ -376,11 +391,17 @@ figure.element-interactive {
 }
 
 .cnv-fixed-menu__arrow--down {
-    right: 20px;
+    right: 10px;
+    @include mq(mobileLandscape) {
+        right: 20px;
+    }
 
 }
 .cnv-fixed-menu__arrow--up {
-    right: 60px;
+    right: 44px;
+    @include mq(mobileLandscape) {
+        right: 60px;
+    }
 }
 
 .cnv-head__conversation {
