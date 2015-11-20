@@ -2,6 +2,8 @@
 @import 'mq';
 @import 'share';
 
+$max-content-width: 1020px;
+
 figure.element-interactive {
     margin: 0 !important;
 }
@@ -11,16 +13,25 @@ figure.element-interactive {
 }
 
 .cnv-content {
-    max-width: 980px;
-    background: white;
+}
+
+.cnv-conversations-container{
+    max-width: $max-content-width;
     margin: auto;
+    background: white;
+}
+
+.cnv-head-container {
+    background: #474f52;
 }
 
 .cnv-head {
-    background: #474f52;
     color: #6d7275;
     padding-bottom: 24px;
     padding: 12px 10px;
+    margin: auto;
+    max-width: $max-content-width;
+    box-sizing: border-box;
     @include mq(mobileLandscape) {
         padding: 12px 20px;
     }
@@ -31,14 +42,15 @@ figure.element-interactive {
         padding: 12px 80px;
     }
     > h3:first-child {
-        margin: 12px 0;
+        margin-top: 12px;
+        margin-bottom: 6px;
         @include fs-headline(2);
         @include mq(mobileLandscape) {
-            margin: 24px 0;
+            margin-top: 24px;
             @include fs-headline(3);
         }
         @include mq(desktop) {
-            margin: 24px 0;
+            margin-top: 24px;
             @include fs-headline(4);
         }
         font-weight: 100;
@@ -47,7 +59,11 @@ figure.element-interactive {
 
     > h2 {
         color: white;
-        margin-bottom: 6px;
+        margin-top: 6px;
+        margin-bottom: 12px;
+        @include mq(tablet) {
+            margin-bottom: 24px;
+        }
     }
 }
 
@@ -70,7 +86,11 @@ figure.element-interactive {
         font-size: 56px;
         line-height: 72px;
     }
+}
+.cnv-head__conversation > h2 {
     margin: 0;
+    display: inline-block;
+    position: relative;
 }
 
 .cnv-head__conversation {
@@ -80,7 +100,8 @@ figure.element-interactive {
 .cnv-head__conversation__author {
     @include fs-headline(1);
     @include mq(mobileLandscape) {
-        @include fs-headline(2, true);
+        font-size: 18px;
+        line-height: 20px;
     }
     @include mq(desktop) {
         @include fs-headline(3, true);
@@ -89,19 +110,33 @@ figure.element-interactive {
 }
 
 .cnv-head__conversation__downarrow {
-    position: absolute;
-    width: 36px;
-    height: 36px;
-    top: 18px;
-    right: 0;
-    background: #49a7cb;
+    margin-left: 10px;
     border-radius: 1000px;
-    display: none;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    width: 24px;
+    height: 24px;
+    @include mq(tablet) {
+        width: 30px;
+        height: 30px;
+    }
+    @include mq(desktop) {
+        width: 36px;
+        height: 36px;
+    }
     svg {
-        width: 20px;
+        width: 55%;
         position: absolute;
         left: 0; right: 0; top: 0; bottom: 0;
         margin: auto;
+        fill: #6D7275;
+    }
+    .cnv-head__conversation:hover & {
+        background: #49a7cb;
+        svg {
+            fill: white;
+        }
     }
 }
 
@@ -123,9 +158,6 @@ figure.element-interactive {
     color: #6d7275;
     &:hover {
         color: #49a7cb;
-        .cnv-head__conversation__downarrow {
-            display: block;
-        }
     }
 }
 
@@ -203,7 +235,7 @@ figure.element-interactive {
 }
 
 .cnv-fixed-menu__content {
-    max-width: 980px;
+    max-width: $max-content-width;
     margin: auto;
     padding-left: 10px;
     @include mq(mobileLandscape) { padding-left: 20px; }
