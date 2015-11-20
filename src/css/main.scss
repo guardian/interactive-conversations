@@ -445,6 +445,9 @@ figure.element-interactive {
 .cnv-head__conversation {
     opacity: 0;
     text-decoration: none;
+    &:hover {
+        text-decoration: none;
+    }
 }
 .cnv-head--animate .cnv-head__conversation {
     opacity: 1;
