@@ -65,12 +65,20 @@ figure.element-interactive {
     display: none;
     svg {
         width: 20px;
-        -ms-transform: rotate(90deg);
-        transform: rotate(90deg);
         position: absolute;
         left: 0; right: 0; top: 0; bottom: 0;
         margin: auto;
     }
+}
+
+.cnv-downarrow {
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.cnv-uparrow {
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
 }
 
 .cnv-head__conversation {
@@ -136,4 +144,69 @@ figure.element-interactive {
 .cnv-conversation__block-pic {
     width: 100%;
     max-width: 620px;
+}
+
+.cnv-fixed-menu {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 10;
+    width: 100%;
+    color: #f7f7f7;
+    background: darken(#474f52, 2%);
+    &[data-show] {
+        display: block;
+    }
+}
+
+.cnv-fixed-menu__content {
+    max-width: 980px;
+    margin: auto;
+    padding-left: 80px;
+    box-sizing: border-box;
+    position: relative;
+    background: #474f52;
+    > h2 {
+        @include fs-bodyHeading(4);
+        margin: 0;
+        line-height: 48px;
+    }
+}
+
+.cnv-fixed-menu__title {
+    color: #49a7cb;
+}
+
+.cnv-fixed-menu__downarrow,
+.cnv-fixed-menu__uparrow {
+    position: absolute;
+    top: 0; bottom: 0;
+    margin: auto;
+    width: 32px;
+    height: 32px;
+    border-radius: 1000px;
+    display: block;
+    border: 1px solid #dfdfdf;
+    cursor: pointer;
+    svg {
+        width: 20px;
+        fill: #dfdfdf;
+        position: absolute;
+        left: 0; right: 0; top: 0; bottom: 0;
+        margin: auto;
+    }
+    &:hover {
+        border: 1px solid #ffffff;
+        svg {
+            fill: #ffffff;
+        }
+    }
+}
+
+.cnv-fixed-menu__downarrow {
+    right: 20px;
+
+}
+.cnv-fixed-menu__uparrow {
+    right: 60px;
 }
