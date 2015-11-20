@@ -35,6 +35,7 @@ function load(el, data) {
 
     let els = {
         top: el.querySelector('#cnv-top'),
+        head: el.querySelector('.cnv-head'),
         menu: el.querySelector('.cnv-fixed-menu'),
         menuTitle: el.querySelector('.cnv-fixed-menu__title'),
         convos: [].slice.call(el.querySelectorAll('.cnv-conversation')).reverse()
@@ -59,6 +60,8 @@ function load(el, data) {
         } else if (menuVisible) hideMenu();
         menuVisible = menuShouldBeVisible;
     })
+
+    window.setTimeout(() => els.head.className = 'cnv-head cnv-head--animate', 50);
 }
 
 export function init(el, context, config) {

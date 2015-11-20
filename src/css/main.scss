@@ -210,3 +210,16 @@ figure.element-interactive {
 .cnv-fixed-menu__uparrow {
     right: 60px;
 }
+
+.cnv-head__conversation {
+    opacity: 0;
+}
+.cnv-head--animate .cnv-head__conversation {
+    opacity: 1;
+    transition: 0.5s opacity;
+}
+@for $i from 3 through 15 {
+    .cnv-head--animate .cnv-head__conversation:nth-child(#{$i}) {
+        transition-delay: 0.1s * $i;
+    }
+}
