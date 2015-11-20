@@ -78,14 +78,19 @@ function load(el, data) {
         menuVisible = menuShouldBeVisible;
     })
 
-    function articleNav(delta) {
-        let {top} = document.querySelector(`#cnv-${lastIndex+delta}`).getBoundingClientRect();
+    function articleNav(index) {
+        let {top} = document.querySelector(`#cnv-${index}`).getBoundingClientRect();
         scrollTop(scrollTop() + top - 48);
         setMenuTitle();
     }
 
-    bean.on(els.menuDown, 'click', evt => articleNav(1))
-    bean.on(els.menuUp, 'click', evt => articleNav(-1))
+    bean.on(els.menuDown, 'click', evt => articleNav(lastIndex+1))
+    bean.on(els.menuUp, 'click', evt => articleNav(lastIndex-1))
+    bean.on(els.head, 'click', '.cnv-head__conversation', evt => {
+        let convoIndex = Number(evt.currentTarget.getAttribute('data-convo-index'));
+        articleNav(convoIndex);
+        evt.preventDefault(); evt.stopPropagation();
+    })
 
     window.setTimeout(() => els.head.className = 'cnv-head cnv-head--animate', 50);
 }

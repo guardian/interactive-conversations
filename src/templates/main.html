@@ -19,7 +19,7 @@
             <h3>The conversations issue</h3>
             <h2>The conversation</h2>
             {{~it.conversations :conversation:i}}
-                <a class="cnv-head__conversation" href="#{{=conversation.id}}">
+                <a class="cnv-head__conversation" href="#{{=conversation.id}}" data-convo-index={{=i}}>
                     <h2>{{=conversation.title}}</h2>
                     <div class="cnv-head__conversation__author">by {{=conversation.author}}</div>
                     <div class="cnv-head__conversation__downarrow">
