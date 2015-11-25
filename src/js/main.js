@@ -12,16 +12,42 @@ import bowser from 'ded/bowser'
 
 var renderMainTemplate = doT.template(mainTemplate);
 
+function getImgIdAndCrop(url) {
+    // example urls:
+    // https://media.gutools.co.uk/images/68dade559ee396fefc43225e6bfa40e80d8355e2
+    // https://media.guim.co.uk/1000fabd81a0ded0aebe43ecfef4497c83244ec5/0_0_4423_3010/4423.jpg
+    let re = /^https?:\/\/media\.(?:guim|gutools)\.co\.uk\/([a-zA-Z0-9]+)\/((\d+)_\d+_(\d+)_\d+)/;
+    let match = re.exec(url);
+    if (match) {
+        return {
+            id: match[1],
+            crop: match[2],
+            width: Number(match[4]) - Number(match[3])
+        };
+    } else throw Error('Invalid image URL - must be a grid image link');
+}
+
+function getImgs(url) {
+    let info = getImgIdAndCrop(url);
+    return {
+        small: `https://media.guim.co.uk/${info.id}/${info.crop}/${Math.min(info.width, 500)}.jpg`,
+        large: `https://media.guim.co.uk/${info.id}/${info.crop}/${Math.min(info.width, 1000)}.jpg`
+    }
+}
+
 function processConversation(conversation, i) {
     let paras = conversation.body
         .replace(/\s*([\r\n]+\s)+/g, '\n')
         .split('\n')
         .map(p => `<p>${p}</p>`)
         .join('');
-
     let author = `<span class="cnv-conversation__author">${conversation.author}</span>`;
     conversation.bodyHTML = paras.slice(0, -('</p>').length) + author + '</p>';
+
     conversation.id = `cnv-${i}`;
+
+    if (conversation.img) conversation.imgs = getImgs(conversation.img);
+
     return conversation;
 }
 

@@ -19,7 +19,7 @@
             {{?it.hoverBackgrounds}}
                 {{~it.conversations :conversation:i}}
                 <div class="cnv-head-background" data-convo-index="{{=i}}"
-                    {{?conversation.img}}style="background: url({{=conversation.img}});"{{?}}>
+                    {{?conversation.imgs}}style="background: url({{=conversation.imgs.large}});"{{?}}>
                 </div>
                 {{~}}
             {{?}}
@@ -71,10 +71,13 @@
                     </a>
                 </div>
 
-                {{?conversation.img}}
+                {{?conversation.imgs}}
                 <div class="cnv-conversation__block-pic
                     {{?conversation.imgStyle}}cnv-conversation__block-pic--{{=conversation.imgStyle}}{{?}}">
-                    <img src="{{=conversation.img}}">
+                    <picture>
+                        <source srcset="{{=conversation.imgs.large}}" media="(min-width: 1000px)">
+                        <img src="{{=conversation.imgs.small}}">
+                    </picture>
                     {{?conversation.imgCaption}}
                         <figcaption class="cnv-conversation__block-pic-caption">{{=conversation.imgCaption}}</figcaption>
                     {{?}}
