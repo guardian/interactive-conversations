@@ -138,8 +138,12 @@ figure.element-interactive {
     position: relative;
     @include fs-bodyHeading(4);
     font-weight: 900;
-    font-size: 22px;
-    line-height: 26px;
+    font-size: 17px;
+    line-height: 22px;
+    @include mq(mobile) {
+        font-size: 20px;
+        line-height: 26px;
+    }
     @include mq(mobileLandscape) {
         font-size: 32px;
         line-height: 36px;
@@ -157,6 +161,7 @@ figure.element-interactive {
     margin: 0;
     display: inline-block;
     position: relative;
+    white-space: nowrap;
 }
 
 .cnv-head__conversation__title,
@@ -175,12 +180,22 @@ figure.element-interactive {
 .cnv-head__conversation__author {
     text-decoration: none;
     @include fs-headline(1);
+
+    margin-left: 20px;
+    @include mq(mobile) {
+        margin-left: 24px;
+    }
     @include mq(mobileLandscape) {
         font-size: 18px;
         line-height: 20px;
+        margin-left: 36px;
+    }
+    @include mq(tablet) {
+        margin-left: 48px;
     }
     @include mq(desktop) {
         @include fs-headline(3, true);
+        margin-left: 64px;
     }
     font-weight: 100;
 }
@@ -210,7 +225,7 @@ figure.element-interactive {
         left: 0; right: 0; top: 0; bottom: 0;
         margin: auto;
         fill: #bdbdbd;
-        opacity: 0.35;
+        opacity: 0.9;
     }
     .cnv-head__conversation:hover & {
         background: #49a7cb;
