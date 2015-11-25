@@ -255,41 +255,37 @@ figure.element-interactive {
 }
 
 .cnv-conversation {
-    padding: 12px 10px;
+    padding: 48px 10px;
     @include mq(mobileLandscape) {
-        padding: 12px 20px;
+        padding: 48px 20px;
     }
     @include mq(tablet) {
-        padding: 12px 60px;
+        padding: 48px 60px;
     }
     @include mq(desktop) {
-        padding: 12px 80px;
+        padding: 48px 80px;
     }
     position: relative;
-    > h2 {
+}
 
-        color: #474f52;
-        font-weight: 900;
-        margin: 12px 0;
+.cnv-conversation__title {
+    color: #474f52;
+    font-weight: 900;
+    margin: 12px 0;
+    font-size: 22px;
+    line-height: 26px;
+    @include mq(mobileLandscape) {
+        font-size: 28px;
+        line-height: 32px;
+    }
+    @include mq(tablet) {
         font-size: 26px;
         line-height: 32px;
-        @include mq(mobileLandscape) {
-            font-size: 32px;
-            line-height: 36px;
-        }
-        @include mq(tablet) {
-            font-size: 36px;
-            line-height: 42px;
-            padding-right: 130px;
-            margin-bottom: 36px;
-        }
-        @include mq(desktop) {
-            font-size: 42px;
-            line-height: 48px;
-        }
-        > span {
-            color: #95a0a4;
-        }
+        padding-right: 130px;
+        margin: 36px 0;
+    }
+    > span {
+        color: #95a0a4;
     }
 }
 
@@ -305,7 +301,7 @@ figure.element-interactive {
     @include mq(tablet) {
         position: absolute;
         right: 20px;
-        top: 24px;
+        top: 52px;
         margin-bottom: 0;
         height: auto;
     }
@@ -347,6 +343,7 @@ figure.element-interactive {
 
 .cnv-conversation__block-pic {
     width: 100%;
+    margin-bottom: 24px;
 }
 
 .cnv-conversation__share-btns {
@@ -471,5 +468,38 @@ figure.element-interactive {
 @for $i from 3 through 15 {
     .cnv-head--animate .cnv-head__conversation:nth-child(#{$i}) {
         transition-delay: 0.1s * $i;
+    }
+}
+
+.cnv-conversation__quote {
+    margin: 0;
+    color: #95a0a6;
+    @include f-header;
+    font-size: 26px;
+    line-height: 32px;
+    @include mq(mobileLandscape) {
+        font-size: 30px;
+        line-height: 36px;
+    }
+    @include mq(tablet) {
+        font-size: 36px;
+        line-height: 42px;
+        padding-right: 140px;
+    }
+    @include mq(desktop) {
+        font-size: 42px;
+        line-height: 48px;
+    }
+    @include mq(wide) {
+        font-size: 48px;
+        line-height: 56px;
+    }
+    &:before {
+        content: '‘';
+        display: inline;
+    }
+    &:after {
+        content: '’';
+        display: inline;
     }
 }

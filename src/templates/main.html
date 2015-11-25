@@ -53,7 +53,11 @@
         <div class="cnv-conversations-container">
             {{~it.conversations :conversation:i}}
             <div id="{{=conversation.id}}" class="cnv-conversation" data-convo-index="{{=i}}">
-                <h2>The conversation <span>{{=conversation.title}}</span></h2>
+
+                {{?conversation.quote}}<blockquote class="cnv-conversation__quote">{{=conversation.quote}}</blockquote>{{?}}
+
+                <h2 class="cnv-conversation__title">The conversation {{=conversation.title}}</h2>
+
                 <div class="cnv-conversation__controls">
                     <div class="cnv-share-btns cnv-conversation__share-btns">
                         <button class="interactive-share" data-index="{{=i}}" data-network="facebook"></button>
