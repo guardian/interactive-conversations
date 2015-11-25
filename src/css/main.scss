@@ -68,16 +68,24 @@ figure.element-interactive {
 }
 .cnv-meta__standfirst {
     max-width: 820px;
-    @include fs-bodyHeading(2);
+    @include f-header;
+    font-size: 24px;
+    line-height: 30px;
     @include mq(mobileLandscape) {
-        @include fs-bodyHeading(3, true);
+        font-size: 26px;
+        line-height: 32px;
+    }
+    @include mq(mobileLandscape) {
+        font-size: 30px;
+        line-height: 34px;
     }
     @include mq(tablet) {
-        @include fs-bodyHeading(4, true);
+        font-size: 34px;
+        line-height: 38px;
     }
     @include mq(desktop) {
-        font-size: 22px;
-        line-height: 30px;
+        font-size: 34px;
+        line-height: 38px;
     }
     color: #dadada;
 }
@@ -136,9 +144,9 @@ figure.element-interactive {
 .cnv-head > h2,
 .cnv-head__conversation__title {
     position: relative;
-    @include fs-bodyHeading(4);
+    @include fs-header(4);
     font-weight: 900;
-    font-size: 17px;
+    font-size: 18px;
     line-height: 22px;
     @include mq(mobile) {
         font-size: 20px;
@@ -274,6 +282,7 @@ figure.element-interactive {
     margin: 12px 0;
     font-size: 22px;
     line-height: 26px;
+    @include f-header;
     @include mq(mobileLandscape) {
         font-size: 28px;
         line-height: 32px;
@@ -386,7 +395,7 @@ figure.element-interactive {
     > h2 {
         margin: 0;
         color: #6e7275;
-        @include f-bodyHeading;
+        @include f-header;
         font-size: 20px;
         line-height: 28px;
         @include mq(tablet) {
