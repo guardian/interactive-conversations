@@ -18,12 +18,14 @@
         <div class="cnv-head-container">
             {{?it.hoverBackgrounds}}
                 {{~it.conversations :conversation:i}}
-                <div class="cnv-head-background" data-convo-index="{{=i}}" style="background: url({{=conversation.img}});"></div>
+                <div class="cnv-head-background" data-convo-index="{{=i}}"
+                    {{?conversation.img}}style="background: url({{=conversation.img}});"{{?}}>
+                </div>
                 {{~}}
             {{?}}
             <div id="cnv-top" class="cnv-head">
                 <h3>The conversations issue</h3>
-                <h2>The conversation</h2>
+                <h2>The conversation …</h2>
                 {{~it.conversations :conversation:i}}
                     <a class="cnv-head__conversation" href="#{{=conversation.id}}" data-convo-index={{=i}}>
                         <h2 class="cnv-head__conversation__title">… {{=conversation.title}}
@@ -69,7 +71,15 @@
                     </a>
                 </div>
 
-                {{?conversation.img}}<img class="cnv-conversation__block-pic" src="{{=conversation.img}}">{{?}}
+                {{?conversation.img}}
+                <div class="cnv-conversation__block-pic
+                    {{?conversation.imgStyle}}cnv-conversation__block-pic--{{=conversation.imgStyle}}{{?}}">
+                    <img src="{{=conversation.img}}">
+                    {{?conversation.imgCaption}}
+                        <figcaption class="cnv-conversation__block-pic-caption">{{=conversation.imgCaption}}</figcaption>
+                    {{?}}
+                </div>
+                {{?}}
 
                 <div class="cnv-conversation__body">
                     {{=conversation.bodyHTML}}

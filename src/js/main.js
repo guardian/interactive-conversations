@@ -13,11 +13,14 @@ import bowser from 'ded/bowser'
 var renderMainTemplate = doT.template(mainTemplate);
 
 function processConversation(conversation, i) {
-    conversation.bodyHTML = conversation.body
+    let paras = conversation.body
         .replace(/\s*([\r\n]+\s)+/g, '\n')
         .split('\n')
         .map(p => `<p>${p}</p>`)
         .join('');
+
+    let author = `<span class="cnv-conversation__author">${conversation.author}</span>`;
+    conversation.bodyHTML = paras.slice(0, -('</p>').length) + author + '</p>';
     conversation.id = `cnv-${i}`;
     return conversation;
 }
