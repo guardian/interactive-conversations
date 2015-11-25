@@ -64,7 +64,9 @@ function load(el, data) {
         let shareText = data.conversations[i].shareText || data.shareText;
         let shareUrl = data.conversations[i].shareUrl || data.shareUrl;
         let hashTag = data.conversations[i].hashtag || data.hashtag;
-        share(shareText, shareUrl, hashTag)(network);
+        let fbImg = data.conversations[i].imgs && data.conversations[i].imgs.large;
+        let twImg = data.conversations[i].twitterImg;
+        share(shareText, shareUrl, fbImg, twImg, hashTag)(network);
     })
 
     let els = {
