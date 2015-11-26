@@ -104,6 +104,15 @@ function load(el, data) {
             }
         }
     }
+
+    function articleNav(index) {
+        let {top} = document.querySelector(`#cnv-${index}`).getBoundingClientRect();
+        document.location.hash = `c${index}`;
+        scrollTop(scrollTop() + top - 48);
+        setMenuTitle();
+    }
+
+
     let throttledSetMenuTitle = throttle(setMenuTitle, 150, {leading: false, trailing: true});
 
     window.addEventListener('scroll', evt => {
@@ -114,13 +123,6 @@ function load(el, data) {
         } else if (menuVisible) hideMenu();
         menuVisible = menuShouldBeVisible;
     })
-
-    function articleNav(index) {
-        let {top} = document.querySelector(`#cnv-${index}`).getBoundingClientRect();
-        scrollTop(scrollTop() + top - 48);
-        setMenuTitle();
-    }
-
     bean.on(els.menuDown, 'click', evt => articleNav(lastIndex+1))
     bean.on(els.menuUp, 'click', evt => articleNav(lastIndex-1))
     bean.on(els.head, 'click', '.cnv-head__conversation', evt => {
@@ -142,6 +144,9 @@ function load(el, data) {
     }
 
     window.setTimeout(() => els.head.className = 'cnv-head cnv-head--animate', 50);
+
+    let match = /^#?c(\d+)$/.exec(document.location.hash);
+    if (match) window.setTimeout(() => articleNav(match[1]), 10);
 }
 
 export function init(el, context, config) {
