@@ -36,13 +36,11 @@ function getImgs(url) {
 }
 
 function processConversation(conversation, i) {
-    let paras = conversation.body
+    conversation.bodyHTML = conversation.body
         .replace(/\s*([\r\n]+\s)+/g, '\n')
         .split('\n')
         .map(p => `<p>${p}</p>`)
         .join('');
-    let author = `<span class="cnv-conversation__author">${conversation.author}</span>`;
-    conversation.bodyHTML = paras.slice(0, -('</p>').length) + author + '</p>';
 
     conversation.id = `cnv-${i}`;
 

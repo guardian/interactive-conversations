@@ -300,6 +300,7 @@ figure.element-interactive {
     margin-top: 10px !important;
     font-size: 18px;
     line-height: 24px;
+    max-width: 380px;
     @include f-header;
     @include mq(mobileLandscape) {
         font-size: 20px;
