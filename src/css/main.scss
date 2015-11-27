@@ -30,6 +30,8 @@ figure.element-interactive {
 .cnv-head-background {
     background-size: cover !important;
     background-position: center !important;
+    -ms-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
     transform: scale(1.1);
     position: absolute;
     top: 0;
@@ -267,11 +269,13 @@ figure.element-interactive {
 
 .cnv-downarrow {
     -ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
     transform: rotate(90deg);
 }
 
 .cnv-uparrow {
     -ms-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
     transform: rotate(-90deg);
 }
 
