@@ -161,12 +161,6 @@ figure.element-interactive {
         line-height: 72px;
     }
 }
-.cnv-head__conversation__title {
-    margin: 0;
-    display: inline-block;
-    position: relative;
-    white-space: nowrap;
-}
 
 .cnv-head__conversation__title,
 .cnv-head__conversation__author {
@@ -177,6 +171,22 @@ figure.element-interactive {
         color: #49a7cb;
     }
 }
+
+.cnv-head__conversation__title {
+    margin: 0;
+    display: inline-block;
+    position: relative;
+    white-space: nowrap;
+}
+
+@include mq($until: desktop) {
+    .cnv-head__conversation__title,
+    .cnv-head__conversation__author {
+        color: white;
+        opacity: 1;
+    }
+}
+
 .cnv-head__conversation {
     position: relative;
 }
