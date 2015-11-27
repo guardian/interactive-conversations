@@ -83,6 +83,11 @@ function load(el, data) {
     let showMenu = () => els.menu.setAttribute('data-show', '');
     let hideMenu = () => els.menu.removeAttribute('data-show');
 
+    if (bowser.ios) {
+        els.menuUp.style.display = 'none';
+        els.menuDown.style.display = 'none';
+    }
+
     let lastIndex;
     function setMenuTitle() {
         for (var i = 0; i < els.convos.length; i++) {
