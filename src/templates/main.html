@@ -16,11 +16,11 @@
         </div>
 
         <div class="cnv-head-container">
+            <div class="cnv-head-background cnv-head-background--show" data-convo-index="-1"
+                {{?it.bgImgs}}style="background: url({{=it.bgImgs.large}});"{{?}}>
+            </div>
             {{?it.hoverBackgrounds}}
 
-                <div class="cnv-head-background cnv-head-background--show" data-convo-index="-1"
-                    {{?it.bgImgs}}style="background: url({{=it.bgImgs.large}});"{{?}}>
-                </div>
 
                 {{~it.conversations :conversation:i}}
                 <div class="cnv-head-background" data-convo-index="{{=i}}"
