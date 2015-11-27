@@ -109,22 +109,6 @@ figure.element-interactive {
     @include mq(desktop) {
         padding: 12px 80px;
     }
-    > h3:first-child {
-        position: relative;
-        margin-top: 12px;
-        margin-bottom: 6px;
-        @include fs-headline(2);
-        @include mq(mobileLandscape) {
-            margin-top: 24px;
-            @include fs-headline(3);
-        }
-        @include mq(desktop) {
-            margin-top: 24px;
-            @include fs-headline(4);
-        }
-        font-weight: 100;
-        color: #8B8F92;
-    }
 
     > h2 {
         color: white;
@@ -136,6 +120,33 @@ figure.element-interactive {
     }
 }
 
+.cnv-head__tagpage {
+    position: relative;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    @include f-header;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    @include mq(mobileLandscape) {
+        margin-top: 24px;
+        font-size: 18px;
+        line-height: 22px;
+    }
+    @include mq(desktop) {
+        margin-bottom: 12px;
+        margin-top: 24px;
+        font-size: 20px;
+        line-height: 26px;
+    }
+    a, a:visited {
+        color: #8B8F92;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+}
 
 .cnv-head > h2,
 .cnv-head__conversation__title {
