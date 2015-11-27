@@ -60,11 +60,11 @@ function load(el, data) {
     bean.on(el, 'click', '.interactive-share', evt => {
         let network = evt.currentTarget.getAttribute('data-network');
         let i = evt.currentTarget.getAttribute('data-index');
-        let shareText = data.conversations[i].shareText || data.shareText;
-        let shareUrl = data.conversations[i].shareUrl || data.shareUrl;
-        let hashTag = data.conversations[i].hashtag || data.hashtag;
-        let fbImg = data.conversations[i].imgs && data.conversations[i].imgs.large;
-        let twImg = data.conversations[i].twitterImg;
+        let shareText = i && data.conversations[i].shareText || data.shareText;
+        let shareUrl = i && data.conversations[i].shareUrl || data.shareUrl;
+        let hashTag = i && data.conversations[i].hashtag || data.hashtag;
+        let fbImg = i && (data.conversations[i].imgs && data.conversations[i].imgs.large) || data.bgImgs.large;
+        let twImg = i && data.conversations[i].twitterImg;
         share(shareText, shareUrl, fbImg, twImg, hashTag)(network);
     })
 
