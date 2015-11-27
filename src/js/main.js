@@ -54,6 +54,7 @@ function load(el, data) {
 
     data.conversations = data.conversations.map(processConversation);
     data.hoverBackgrounds = hoverBackgrounds;
+    data.bgImgs = getImgs(data.bgImg);
     el.innerHTML = renderMainTemplate(data);
 
     bean.on(el, 'click', '.interactive-share', evt => {
@@ -76,7 +77,7 @@ function load(el, data) {
         menuTitle: el.querySelector('.cnv-fixed-menu__title'),
         convos: [].slice.call(el.querySelectorAll('.cnv-conversation')).reverse(),
         headConvos: [].slice.call(el.querySelectorAll('.cnv-head__conversation')),
-        headBackgrounds: [].slice.call(el.querySelectorAll('.cnv-head-background')),
+        headBackgrounds: [].slice.call(el.querySelectorAll('.cnv-head-background'))
     }
     let menuVisible = false;
     let showMenu = () => els.menu.setAttribute('data-show', '');
@@ -134,10 +135,16 @@ function load(el, data) {
     if (hoverBackgrounds) {
         els.headConvos.forEach((thisConvoEl, i) => {
             bean.on(thisConvoEl, 'mouseenter', evt => {
-                hideAllBackgrounds();
-                els.headBackgrounds[i].className = 'cnv-head-background cnv-head-background--show';
+                if (data.conversations[i].img) {
+                    hideAllBackgrounds();
+                    els.headBackgrounds[i+1].className = 'cnv-head-background cnv-head-background--show';
+                }
             })
-            bean.on(thisConvoEl, 'mouseleave', hideAllBackgrounds);
+            bean.on(thisConvoEl, 'mouseleave', () =>{
+                hideAllBackgrounds();
+                els.headBackgrounds[0].className = 'cnv-head-background cnv-head-background--show';
+
+            });
         })
     }
 

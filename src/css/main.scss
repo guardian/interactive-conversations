@@ -42,6 +42,10 @@ figure.element-interactive {
 
 .cnv-head-background--show {
     opacity: 0.4;
+    &[data-convo-index="-1"] {
+        opacity: 0.1;
+    }
+
 }
 
 .cnv-meta-container {
